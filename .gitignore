@@ -1,2 +1,5 @@
+**/node_modules
+**/.pnp
+**/.pnp.js
 
-node_modules
+**/.DS_Store
