@@ -8,15 +8,17 @@ const App = () => {
     const [newSearch, setNewSearch] = useState("");
 
     useEffect(() => {
-        console.log("effect");
         axios.get("https://restcountries.eu/rest/v2/all").then((response) => {
-            console.log("promise fulfilled");
             setCountries(response.data);
         });
     }, []);
 
     const handleSearchChange = (event) => {
         setNewSearch(event.target.value);
+    };
+
+    const handleShowClick = (country) => {
+        setNewSearch(country);
     };
 
     const countriesToShow = countries.filter((country) =>
@@ -26,7 +28,10 @@ const App = () => {
     return (
         <div>
             <Search value={newSearch} handleChange={handleSearchChange} />
-            <Countries countries={countriesToShow} />
+            <Countries
+                countries={countriesToShow}
+                handleShowClick={handleShowClick}
+            />
         </div>
     );
 };
