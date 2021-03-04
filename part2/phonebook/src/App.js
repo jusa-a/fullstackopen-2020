@@ -57,7 +57,10 @@ const App = () => {
             })
             .catch((e) => {
                 console.log(e.response.data);
-                setNotification({ message: e.response.data, type: "error" });
+                setNotification({
+                    message: e.response.data.error,
+                    type: "error",
+                });
             });
     };
 
