@@ -45,14 +45,20 @@ const App = () => {
             number: newNumber,
         };
 
-        personService.add(personObject).then((returnedPerson) => {
-            setPersons(persons.concat(returnedPerson));
-            emptyFields();
-            setNotification({ message: `Added ${returnedPerson.name}` });
-            setTimeout(() => {
-                setNotification({});
-            }, 2000);
-        });
+        personService
+            .add(personObject)
+            .then((returnedPerson) => {
+                setPersons(persons.concat(returnedPerson));
+                emptyFields();
+                setNotification({ message: `Added ${returnedPerson.name}` });
+                setTimeout(() => {
+                    setNotification({});
+                }, 2000);
+            })
+            .catch((e) => {
+                console.log(e.response.data);
+                setNotification({ message: e.response.data, type: "error" });
+            });
     };
 
     const changeNumber = () => {
